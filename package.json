@@ -1,0 +1,27 @@
+{
+	"name": "social-network",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon ./server/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Aakash1103Jha/social-network.git"
+	},
+	"keywords": [],
+	"author": "Aakash Jha <thedevdesigner@gmail.com> (https://www.thedevdesigner.com/)",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Aakash1103Jha/social-network/issues"
+	},
+	"homepage": "https://github.com/Aakash1103Jha/social-network#readme",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.0",
+		"express": "^4.17.3",
+		"mongoose": "^6.2.3",
+		"regenerator-runtime": "^0.13.9"
+	}
+}
