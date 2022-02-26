@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "nodemon ./server/index.js --trace-warnings"
+		"dev": "nodemon ./server/index.js --trace-warnings",
+		"test": "jest"
 	},
 	"repository": {
 		"type": "git",
@@ -26,5 +27,8 @@
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^6.2.3",
 		"regenerator-runtime": "^0.13.9"
+	},
+	"devDependencies": {
+		"jest": "^27.5.1"
 	}
 }
