@@ -30,3 +30,11 @@
 	color: var(--red-click);
 	border: 1px solid var(--red-click);
 }
+.button.disabled,
+.button.disabled:hover,
+.button.disabled:active {
+	background: var(--smoke);
+	color: var(--gray);
+	border: none;
+	cursor: not-allowed;
+}
