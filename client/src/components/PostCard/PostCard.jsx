@@ -18,19 +18,20 @@ const PostCard = ({ post, likeOnePost, dislikeOnePost }) => {
 			<div className={styles.post_content}>
 				<p>{content}</p>
 			</div>
-			{isLoggedIn === true && (
-				<div className={styles.post_cta}>
-					<Button
-						label={`${likes} Likes`}
-						onClick={likeOnePost.bind(null, _id.toString())}
-					/>
-					<Button
-						type="secondary"
-						label={`${dislikes} Dislikes`}
-						onClick={dislikeOnePost.bind(null, _id.toString())}
-					/>
-				</div>
-			)}
+
+			<div className={styles.post_cta}>
+				<Button
+					label={`${likes} Likes`}
+					onClick={likeOnePost.bind(null, _id.toString())}
+					disabled={!isLoggedIn}
+				/>
+				<Button
+					type="secondary"
+					label={`${dislikes} Dislikes`}
+					onClick={dislikeOnePost.bind(null, _id.toString())}
+					disabled={!isLoggedIn}
+				/>
+			</div>
 		</div>
 	)
 }

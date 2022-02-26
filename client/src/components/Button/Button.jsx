@@ -8,10 +8,12 @@ import styles from "./Button.module.css"
  * @returns Button
  */
 const Button = (props) => {
-	const { label, type } = props
+	const { label, type, disabled } = props
 	return (
 		<button
-			className={`${styles.button} ${type === "secondary" ? styles.secondary : null}`}
+			className={`${styles.button} ${type === "secondary" ? styles.secondary : null} ${
+				disabled === true ? styles.disabled : null
+			}`}
 			{...props}>
 			{label}
 		</button>
