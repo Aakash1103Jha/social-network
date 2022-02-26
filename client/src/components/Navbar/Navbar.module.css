@@ -1,0 +1,21 @@
+.navbar,
+.links,
+.logo {
+	display: flex;
+	align-items: center;
+}
+.navbar {
+	background: var(--white);
+	height: 5rem;
+	justify-content: space-between;
+	padding: 0rem 1rem;
+}
+.logo,
+.links {
+	flex: 1;
+	height: 100%;
+	align-items: center;
+}
+.links {
+	justify-content: flex-end;
+}
