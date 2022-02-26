@@ -39,18 +39,14 @@ const Navbar = () => {
 				{isLoggedIn === true && (
 					<>
 						<li>
-							<NavLink to="/profile">
-								<Button label="Profile" />
+							<NavLink to="/new-post">
+								<Button label="New Post" />
 							</NavLink>
 						</li>
 						<li>
-							{/* <NavLink to="/signout"> */}
-							<Button
-								type="secondary"
-								label="Signout"
-								onClick={dispatch.bind(null, authActions.onSignout())}
-							/>
-							{/* </NavLink> */}
+							<NavLink to="/profile">
+								<Button type="secondary" label="Profile" />
+							</NavLink>
 						</li>
 					</>
 				)}

@@ -1,0 +1,32 @@
+.post {
+	padding: 1rem;
+}
+.header,
+.post_form,
+.form {
+	display: flex;
+}
+.header {
+	margin-bottom: 1rem;
+}
+.form {
+	width: 100%;
+	max-width: 500px;
+	flex-direction: column;
+}
+.form input,
+.form textarea {
+	margin: 0.5rem 0rem 1rem 0rem;
+	padding: 0.4rem;
+	border-radius: var(--radius-sm);
+	border: 1.5px solid var(--smoke);
+}
+.form textarea {
+	max-width: 100%;
+	min-height: 10rem;
+	max-height: 15rem;
+}
+.form input:focus,
+.form textarea:focus {
+	outline: 1.5px solid var(--red-click);
+}
