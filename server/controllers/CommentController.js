@@ -27,7 +27,7 @@ const dislikeComment = async (req, res) => {
 	var oneComment = comments.filter((item) => {
 		if (item._id.toString() === _id) return item
 	})
-	oneComment[0].dislikes = oneComment[0].dislikes - 1
+	oneComment[0].dislikes = oneComment[0].dislikes + 1
 	res.send(oneComment)
 }
 

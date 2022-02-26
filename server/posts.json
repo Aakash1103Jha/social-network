@@ -1,0 +1,26 @@
+[
+	{
+		"_id": 1,
+		"title": "First post",
+		"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+		"likes": 0,
+		"dislikes": 1,
+		"userId": "aakash1103jha"
+	},
+	{
+		"_id": 2,
+		"title": "Second post",
+		"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+		"likes": 2,
+		"dislikes": 0,
+		"userId": "afemalecoder"
+	},
+	{
+		"_id": 3,
+		"title": "Third post",
+		"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+		"likes": 0,
+		"dislikes": 0,
+		"userId": "afemalecoder"
+	}
+]

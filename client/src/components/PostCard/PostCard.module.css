@@ -1,0 +1,16 @@
+.postcard {
+	background: var(--white);
+	border: 2px solid var(--smoke);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow);
+	margin-bottom: 1rem;
+	padding: 1rem;
+}
+.post_header,
+.post_content {
+	margin-bottom: 1rem;
+}
+.post_cta {
+	display: flex;
+	align-items: center;
+}
