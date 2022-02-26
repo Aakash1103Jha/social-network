@@ -1,5 +1,5 @@
-const validateEmail = require("./validateEmail")
-const validatePassword = require("./validatePassword")
+const validateEmail = require("../validations/validateEmail")
+const validatePassword = require("../validations/validatePassword")
 
 module.exports = async (req, res, next) => {
 	if (!req.body) return res.status(400).json("Either data is not provided or is invalid")
