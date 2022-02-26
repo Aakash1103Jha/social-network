@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose")
 
-const Post = Schema(
+const Post = new Schema(
 	{
 		title: {
 			type: String,

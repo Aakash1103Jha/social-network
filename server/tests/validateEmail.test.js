@@ -1,3 +1,7 @@
+/**
+ * Test suit for validateEmail function.
+ * Checks for all positive and negative scenarios
+ */
 const validateEmail = require("../validations/validateEmail")
 
 test("returns false for empty email", () => {

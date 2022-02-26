@@ -1,3 +1,7 @@
+/**
+ * Test suit for validatePassword function.
+ * Checks for all positive and negative scenarios
+ */
 const validatePassword = require("../validations/validatePassword")
 
 test("returns false for empty password", () => {

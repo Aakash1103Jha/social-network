@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose")
 
-const Comment = Schema(
+const Comment = new Schema(
 	{
 		postId: {
 			type: String,
