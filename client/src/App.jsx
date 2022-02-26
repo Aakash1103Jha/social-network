@@ -1,10 +1,12 @@
 import React, { lazy, Suspense } from "react"
-import { Route, Routes } from "react-router"
+import { Navigate, Route, Routes } from "react-router"
 
 import styles from "./App.module.css"
-import Loader from "./components/Loader/Loader"
 
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
+const Profile = lazy(() => import("./pages/Profile/Profile"))
+
+const isLoggedIn = true
 
 const App = () => {
 	return (
@@ -14,9 +16,22 @@ const App = () => {
 					exact
 					path="/"
 					element={
-						<Suspense fallback={<Loader />}>
+						<Suspense fallback={<>Loading</>}>
 							<Homepage />
 						</Suspense>
+					}
+				/>
+				<Route
+					exact
+					path="/profile"
+					element={
+						isLoggedIn === true ? (
+							<Suspense fallback={<>Loading</>}>
+								<Profile />
+							</Suspense>
+						) : (
+							<Navigate to="/" />
+						)
 					}
 				/>
 			</Routes>
