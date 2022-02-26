@@ -1,0 +1,31 @@
+.button {
+	background-color: var(--red);
+	transition: var(--transition);
+	border-radius: var(--radius-sm);
+	font-size: calc(0.8rem + 0.2vmin);
+	color: var(--white);
+	padding: 0.7rem;
+	border: none;
+	cursor: pointer;
+}
+.button:hover {
+	background-color: var(--red-hover);
+	box-shadow: var(--shadow);
+}
+.button:active {
+	background-color: var(--red-click);
+	box-shadow: inset var(--shadow);
+}
+.button.secondary {
+	background-color: var(--white);
+	color: var(--red);
+	border: 1px solid var(--red);
+}
+.button.secondary:hover {
+	color: var(--red-hover);
+	border: 1px solid var(--red-hover);
+}
+.button.secondary:active {
+	color: var(--red-click);
+	border: 1px solid var(--red-click);
+}
