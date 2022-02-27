@@ -41,6 +41,7 @@ const onSignup = async (req, res) => {
 	})
 	try {
 		await newUser.save()
+		return res.status(200).json("Signup successful!")
 	} catch (err) {
 		console.error(`Signup error: ${err}`)
 		return res.status(500).json("Something went wrong")

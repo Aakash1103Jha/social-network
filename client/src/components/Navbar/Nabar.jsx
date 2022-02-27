@@ -7,7 +7,7 @@ import Logo from "../../assets/images/love.png"
 import { AuthContext } from "../../context/authContext"
 
 const Navbar = () => {
-	const { isLoggedIn, onSignin } = useContext(AuthContext)
+	const { isLoggedIn, onSignin, onSignup } = useContext(AuthContext)
 
 	return (
 		<nav className={styles.navbar}>
@@ -24,9 +24,21 @@ const Navbar = () => {
 						<Button
 							label="Signin"
 							onClick={(event) =>
-								onSignin(event, { email: "aakash@me.com", password: "123" })
+								onSignin(event, {
+									email: "aakash@me.com",
+									password: "Aakashjha@1103",
+								})
 							}
 						/>
+						{/* <Button
+							label="Signup"
+							onClick={(event) =>
+								onSignup(event, {
+									email: "aakash@me.com",
+									password: "Aakashjha@1103",
+								})
+							}
+						/> */}
 						{/* </NavLink> */}
 					</li>
 				)}
