@@ -1,18 +1,18 @@
-import React, { lazy, Suspense } from "react"
+import React, { lazy, Suspense, useContext } from "react"
 import { Navigate, Route, Routes } from "react-router"
-import { useSelector } from "react-redux"
 
 import styles from "./App.module.css"
 
 import Navbar from "./components/Navbar/Nabar"
 import Wrapper from "./components/Wrapper/Wrapper"
+import { AuthContext } from "./context/authContext"
 
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
 const Profile = lazy(() => import("./pages/Profile/Profile"))
 const Post = lazy(() => import("./pages/Post/Post"))
 
 const App = () => {
-	const { isLoggedIn } = useSelector((state) => state.authReducer)
+	const { isLoggedIn } = useContext(AuthContext)
 
 	return (
 		<div className={styles.App}>

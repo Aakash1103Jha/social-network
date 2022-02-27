@@ -11,7 +11,7 @@ const Homepage = () => {
 	 * @returns [Post] [{_id: String, title: String, content: String, likes: Number, dislikes: Number}]
 	 */
 	const getAllPosts = async () => {
-		const res = await fetch("http://192.168.1.6:4000/posts/all")
+		const res = await fetch("/posts/all")
 		const data = await res.json()
 		setPosts(data)
 	}
@@ -21,7 +21,7 @@ const Homepage = () => {
 	 * @param {string} id
 	 */
 	const likeOnePost = async (id) => {
-		const res = await fetch(`http://192.168.1.6:4000/posts/like/${id}`)
+		const res = await fetch(`/posts/like/${id}`)
 		const data = await res.json()
 		setPosts(data)
 	}
@@ -31,7 +31,7 @@ const Homepage = () => {
 	 * @param {string} id
 	 */
 	const dislikeOnePost = async (id) => {
-		const res = await fetch(`http://192.168.1.6:4000/posts/dislike/${id}`)
+		const res = await fetch(`/posts/dislike/${id}`)
 		const data = await res.json()
 		setPosts(data)
 	}

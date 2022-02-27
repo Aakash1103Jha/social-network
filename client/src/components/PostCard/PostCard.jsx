@@ -1,12 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import propTypes from "prop-types"
-import { useSelector } from "react-redux"
 
 import styles from "./PostCard.module.css"
 import Button from "../Button/Button"
+import { AuthContext } from "../../context/authContext"
 
 const PostCard = ({ post, likeOnePost, dislikeOnePost }) => {
-	const { isLoggedIn } = useSelector((state) => state.authReducer)
+	const { isLoggedIn } = useContext(AuthContext)
 	const { title, content, likes, dislikes, _id, userId } = post
 
 	return (

@@ -1,15 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 import { NavLink } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
 
 import styles from "./Navbar.module.css"
-import { authActions } from "../../redux/redux"
 import Button from "../Button/Button"
 import Logo from "../../assets/images/love.png"
+import { AuthContext } from "../../context/authContext"
 
 const Navbar = () => {
-	const { isLoggedIn } = useSelector((state) => state.authReducer)
-	const dispatch = useDispatch()
+	const { isLoggedIn, onSignin, onSignup } = useContext(AuthContext)
 
 	return (
 		<nav className={styles.navbar}>
@@ -25,14 +23,22 @@ const Navbar = () => {
 						{/* <NavLink to="/signin"> */}
 						<Button
 							label="Signin"
-							onClick={dispatch.bind(
-								null,
-								authActions.onSignin({
+							onClick={(event) =>
+								onSignin(event, {
 									email: "aakash@me.com",
-									password: "123asd",
-								}),
-							)}
+									password: "Aakashjha@1103",
+								})
+							}
 						/>
+						{/* <Button
+							label="Signup"
+							onClick={(event) =>
+								onSignup(event, {
+									email: "aakash@me.com",
+									password: "Aakashjha@1103",
+								})
+							}
+						/> */}
 						{/* </NavLink> */}
 					</li>
 				)}

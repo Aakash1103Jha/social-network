@@ -1,5 +1,4 @@
 const User = require("../models/User")
-const validatePassword = require("../validations/validatePassword")
 
 const { genSalt, hash, compare } = require("bcrypt")
 const { sign } = require("jsonwebtoken")
@@ -41,10 +40,15 @@ const onSignup = async (req, res) => {
 	})
 	try {
 		await newUser.save()
+		return res.status(200).json("Signup successful!")
 	} catch (err) {
 		console.error(`Signup error: ${err}`)
 		return res.status(500).json("Something went wrong")
 	}
 }
 
-module.exports = { onSignin, onSignup }
+const onResetPassword = async (req, res) => {
+	const user = await User.findById({ _id })
+}
+
+module.exports = { onSignin, onSignup, onResetPassword }
