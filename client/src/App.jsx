@@ -10,6 +10,7 @@ import { AuthContext } from "./context/authContext"
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
 const Profile = lazy(() => import("./pages/Profile/Profile"))
 const Post = lazy(() => import("./pages/Post/Post"))
+const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"))
 
 const App = () => {
 	const { isLoggedIn } = useContext(AuthContext)
@@ -25,6 +26,24 @@ const App = () => {
 						element={
 							<Suspense fallback={<>Loading</>}>
 								<Homepage />
+							</Suspense>
+						}
+					/>
+					<Route
+						exact
+						path="/signin"
+						element={
+							<Suspense fallback={<>Loading</>}>
+								<AuthPage />
+							</Suspense>
+						}
+					/>
+					<Route
+						exact
+						path="/signup"
+						element={
+							<Suspense fallback={<>Loading</>}>
+								<AuthPage />
 							</Suspense>
 						}
 					/>

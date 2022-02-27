@@ -1,0 +1,48 @@
+.authpage {
+	padding: 0rem 1.5rem;
+}
+.auth_form,
+.form,
+.remember_me {
+	display: flex;
+}
+.form {
+	width: 100%;
+	max-width: 500px;
+	flex-direction: column;
+}
+.form input {
+	margin: 0.5rem 0rem 1rem 0rem;
+	padding: 0.4rem;
+	border-radius: var(--radius-sm);
+	border: 1.5px solid var(--smoke);
+}
+.form textarea {
+	max-width: 100%;
+	min-height: 10rem;
+	max-height: 15rem;
+}
+.form input:focus,
+.form textarea:focus {
+	outline: 1.5px solid var(--red-click);
+}
+.required,
+.error {
+	color: var(--red);
+}
+.required {
+	font-weight: 500;
+}
+.error {
+	font-weight: 300;
+	text-align: center;
+}
+.remember_me {
+	align-items: baseline;
+	justify-content: center;
+	cursor: pointer;
+}
+.remember_me input {
+	margin-right: 0.5rem;
+	cursor: pointer;
+}
