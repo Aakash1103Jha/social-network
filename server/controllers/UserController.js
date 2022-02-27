@@ -1,5 +1,4 @@
 const User = require("../models/User")
-const validatePassword = require("../validations/validatePassword")
 
 const { genSalt, hash, compare } = require("bcrypt")
 const { sign } = require("jsonwebtoken")
@@ -48,4 +47,8 @@ const onSignup = async (req, res) => {
 	}
 }
 
-module.exports = { onSignin, onSignup }
+const onResetPassword = async (req, res) => {
+	const user = await User.findById({ _id })
+}
+
+module.exports = { onSignin, onSignup, onResetPassword }
