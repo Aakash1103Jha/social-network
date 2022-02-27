@@ -1,5 +1,6 @@
 .navbar,
 .links,
+.logo_img,
 .logo {
 	display: flex;
 	align-items: center;
@@ -8,14 +9,23 @@
 	background: var(--white);
 	height: 5rem;
 	justify-content: space-between;
-	padding: 0rem 1rem;
+	padding: 0rem 1.5rem;
 }
 .logo,
+.logo_img,
 .links {
 	flex: 1;
 	height: 100%;
 	align-items: center;
 }
+.logo_img {
+	flex: 0;
+	height: 2.5rem;
+	margin-right: 0.5rem;
+}
 .links {
 	justify-content: flex-end;
+}
+a {
+	text-decoration: none;
 }
