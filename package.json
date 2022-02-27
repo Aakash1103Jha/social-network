@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "nodemon ./server/index.js --trace-warnings",
 		"test": "jest",
-		"build": "webpack --config ./server/webpack.config.js"
+		"build": "CI=false webpack --config ./server/webpack.config.js"
 	},
 	"repository": {
 		"type": "git",
