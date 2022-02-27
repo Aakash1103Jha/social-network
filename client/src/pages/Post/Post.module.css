@@ -1,13 +1,9 @@
 .post {
-	padding: 1rem;
+	padding: 0rem 1.5rem;
 }
-.header,
 .post_form,
 .form {
 	display: flex;
-}
-.header {
-	margin-bottom: 1rem;
 }
 .form {
 	width: 100%;

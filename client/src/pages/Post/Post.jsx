@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import styles from "./Post.module.css"
 
 import Button from "../../components/Button/Button"
+import Header from "../../components/Header/Header"
 
 const Post = () => {
 	const [title, setTitle] = useState("")
@@ -16,9 +17,9 @@ const Post = () => {
 
 	return (
 		<div className={styles.post}>
-			<header className={styles.header}>
+			<Header>
 				<h1>New Post</h1>
-			</header>
+			</Header>
 			<div className={styles.post_form}>
 				<form className={styles.form} onSubmit={onPostSubmit}>
 					<label htmlFor="title">Title</label>
