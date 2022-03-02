@@ -8,11 +8,18 @@ import Header from "../../components/Header/Header"
 const Post = () => {
 	const [title, setTitle] = useState("")
 	const [content, setContent] = useState("")
-
-	const onPostSubmit = (event) => {
+	const newPost = { title: title, content: content }
+	const onPostSubmit = async (event) => {
 		event.preventDefault()
-		const post = { title, content }
-		console.log(post)
+		const res = await fetch("/posts/add", {
+			method: "POST",
+			credentials: "include",
+			body: JSON.stringify(newPost),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+		console.log(await res.json())
 	}
 
 	return (
