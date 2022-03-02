@@ -22,7 +22,7 @@ const onSignin = async (req, res) => {
 				signed: true,
 				expires: new Date(Date.now() + 3600000),
 			})
-			.json("Logged in")
+			.json({ ID: user._id })
 	} catch (err) {
 		console.error(`Signin error: ${err}`)
 		return res.status(500).json("Something went wrong")

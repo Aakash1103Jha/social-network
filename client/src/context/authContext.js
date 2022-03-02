@@ -33,12 +33,15 @@ const AuthContextProvider = (props) => {
 				"Content-Type": "application/json",
 			},
 		})
+		const data = await res.json()
 		if (res.status !== 200) {
 			setIsAuthLoading(false)
-			return setAuthError(await res.json())
+			return setAuthError(data)
 		}
+
 		setIsAuthLoading(false)
 		setIsLoggedIn(true)
+		localStorage.setItem("whoami", data.ID)
 		localStorage.setItem("remember", rememberMe)
 		cb()
 		return navigate("/")
@@ -70,6 +73,7 @@ const AuthContextProvider = (props) => {
 
 	const onSignout = () => {
 		localStorage.removeItem("remember")
+		localStorage.removeItem("whoami")
 		return setIsLoggedIn(false)
 	}
 
