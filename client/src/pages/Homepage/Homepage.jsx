@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import PostCard from "../../components/PostCard/PostCard"
+import Loader from "../../components/Loader/Loader"
 
 import styles from "./Homepage.module.css"
 
@@ -60,7 +61,7 @@ const Homepage = () => {
 					)
 				})
 			) : (
-				<h1>Loading</h1>
+				<Loader />
 			)}
 		</div>
 	)
