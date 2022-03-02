@@ -8,12 +8,14 @@ export const AuthContext = createContext({
 	onSignout: () => {},
 	authError: "",
 	onRememberMe: () => {},
+	isAuthLoading: false,
 })
 
 const AuthContextProvider = (props) => {
 	const navigate = useNavigate()
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
 	const [authError, setAuthError] = useState("")
+	const [isAuthLoading, setIsAuthLoading] = useState(false)
 
 	const flag = localStorage.getItem("remember")
 
@@ -23,6 +25,7 @@ const AuthContextProvider = (props) => {
 		if (!email) return setAuthError("Email is required")
 		if (!password) return setAuthError("Password is required")
 
+		setIsAuthLoading(true)
 		const res = await fetch("/users/signin", {
 			body: JSON.stringify(authData),
 			method: "POST",
@@ -30,18 +33,24 @@ const AuthContextProvider = (props) => {
 				"Content-Type": "application/json",
 			},
 		})
-		if (res.status !== 200) return setAuthError(await res.json())
+		if (res.status !== 200) {
+			setIsAuthLoading(false)
+			return setAuthError(await res.json())
+		}
+		setIsAuthLoading(false)
 		setIsLoggedIn(true)
 		localStorage.setItem("remember", rememberMe)
 		cb()
 		return navigate("/")
 	}
+
 	const onSignup = async (event, authData, cb) => {
 		event.preventDefault()
 		const { email, password } = authData
 		if (!email) return setAuthError("Email is required")
 		if (!password) return setAuthError("Password is required")
 
+		setIsAuthLoading(true)
 		const res = await fetch("/users/signup", {
 			body: JSON.stringify(authData),
 			method: "POST",
@@ -49,18 +58,25 @@ const AuthContextProvider = (props) => {
 				"Content-Type": "application/json",
 			},
 		})
-		if (res.status !== 200) return setAuthError(await res.json())
+		if (res.status !== 200) {
+			setIsAuthLoading(false)
+			return setAuthError(await res.json())
+		}
+		setIsAuthLoading(false)
 		alert("Signup successful")
 		cb()
 		return navigate("/signin")
 	}
+
 	const onSignout = () => {
 		localStorage.removeItem("remember")
 		return setIsLoggedIn(false)
 	}
+
 	const onRememberMe = () => {
 		if (flag === "true") return setIsLoggedIn(true)
 	}
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -71,6 +87,7 @@ const AuthContextProvider = (props) => {
 				authError,
 				setAuthError,
 				onRememberMe,
+				isAuthLoading,
 			}}>
 			{props.children}
 		</AuthContext.Provider>

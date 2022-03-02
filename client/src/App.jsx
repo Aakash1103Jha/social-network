@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useContext, useEffect } from "react"
 import { Navigate, Route, Routes } from "react-router"
 
 import styles from "./App.module.css"
+import Loader from "./components/Loader/Loader"
 
 import Navbar from "./components/Navbar/Nabar"
 import Wrapper from "./components/Wrapper/Wrapper"
@@ -28,7 +29,7 @@ const App = () => {
 						exact
 						path="/"
 						element={
-							<Suspense fallback={<>Loading</>}>
+							<Suspense fallback={<Loader />}>
 								<Homepage />
 							</Suspense>
 						}
@@ -37,7 +38,7 @@ const App = () => {
 						exact
 						path="/signin"
 						element={
-							<Suspense fallback={<>Loading</>}>
+							<Suspense fallback={<Loader />}>
 								<AuthPage />
 							</Suspense>
 						}
@@ -46,7 +47,7 @@ const App = () => {
 						exact
 						path="/signup"
 						element={
-							<Suspense fallback={<>Loading</>}>
+							<Suspense fallback={<Loader />}>
 								<AuthPage />
 							</Suspense>
 						}
@@ -56,7 +57,7 @@ const App = () => {
 						path="/profile"
 						element={
 							isLoggedIn === true ? (
-								<Suspense fallback={<>Loading</>}>
+								<Suspense fallback={<Loader />}>
 									<Profile />
 								</Suspense>
 							) : (
@@ -69,7 +70,7 @@ const App = () => {
 						path="/new-post"
 						element={
 							isLoggedIn === true ? (
-								<Suspense fallback={<>Loading</>}>
+								<Suspense fallback={<Loader />}>
 									<Post />
 								</Suspense>
 							) : (
