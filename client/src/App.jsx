@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext } from "react"
+import React, { lazy, Suspense, useContext, useEffect } from "react"
 import { Navigate, Route, Routes } from "react-router"
 
 import styles from "./App.module.css"
@@ -13,7 +13,11 @@ const Post = lazy(() => import("./pages/Post/Post"))
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"))
 
 const App = () => {
-	const { isLoggedIn } = useContext(AuthContext)
+	const { isLoggedIn, onRememberMe } = useContext(AuthContext)
+
+	useEffect(() => {
+		onRememberMe()
+	}, [isLoggedIn, onRememberMe])
 
 	return (
 		<div className={styles.App}>
