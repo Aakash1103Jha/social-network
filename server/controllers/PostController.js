@@ -5,7 +5,7 @@ const posts = [...data]
 
 const getAllPosts = async (req, res) => {
 	try {
-		const allPosts = await Post.find()
+		const allPosts = await Post.find().sort({ createdAt: -1 })
 		return res.status(200).json(allPosts)
 	} catch (err) {
 		console.error(`New Post Error: ${err}`)
@@ -32,7 +32,21 @@ const editPostById = async (req, res) => {
 	console.log(req.params.id)
 }
 
-const deletePostById = async (req, res) => {}
+const deletePostById = async (req, res) => {
+	if (!req.params.id) return res.status(400).json("Post ID not found!")
+	const _id = req.params.id
+	try {
+		const post = await Post.findByIdAndRemove({ _id })
+		if (!post)
+			return res
+				.status(404)
+				.json("Either the post does not exist, or has already been deleted.")
+		return res.status(200).json("Post deleted!")
+	} catch (err) {
+		console.error(`New Post Error: ${err}`)
+		res.status(500).json("Something went wrong..")
+	}
+}
 
 const likePostById = async (req, res) => {
 	try {

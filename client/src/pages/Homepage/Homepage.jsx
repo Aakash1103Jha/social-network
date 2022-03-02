@@ -6,6 +6,7 @@ import styles from "./Homepage.module.css"
 
 const Homepage = () => {
 	const [posts, setPosts] = useState([])
+	const [isLoading, setIsLoading] = useState(false)
 	/**
 	 * A function that gets list of all posts
 	 * from the server and returns an array of post object
@@ -14,11 +15,35 @@ const Homepage = () => {
 	const getAllPosts = async () => {
 		const res = await fetch("/posts/all")
 		const data = await res.json()
-		setPosts(data)
+		if (res.status !== 200) {
+			return alert(data)
+		}
+		return data
+	}
+	/**
+	 * A function that accepts post id as parameter
+	 * and sends a http request to delete post for that id
+	 * Also calls the getAllPost() function to refresh the page
+	 * @param {string} id
+	 */
+	const deleteYourPost = async (id) => {
+		setIsLoading(true)
+		const res = await fetch(`/posts/delete/${id}`, {
+			method: "GET",
+			body: null,
+			credentials: "include",
+		})
+		const data = await res.json()
+		if (res.status !== 200) {
+			return alert(data)
+		}
+		setIsLoading(false)
+		await getAllPosts().then((data) => setPosts(data))
 	}
 	/**
 	 * A function that accepts post id as parameter
 	 * and sends a http request to update count of likes
+	 * Also calls the getAllPost() function to refresh the page
 	 * @param {string} id
 	 */
 	const likeOnePost = async (id) => {
@@ -27,11 +52,12 @@ const Homepage = () => {
 			body: null,
 			credentials: "include",
 		})
-		await getAllPosts()
+		await getAllPosts().then((data) => setPosts(data))
 	}
 	/**
 	 * A function that accepts post id as parameter
 	 * and sends a http request to update count of dislikes
+	 * Also calls the getAllPost() function to refresh the page
 	 * @param {string} id
 	 */
 	const dislikeOnePost = async (id) => {
@@ -40,16 +66,19 @@ const Homepage = () => {
 			body: null,
 			credentials: "include",
 		})
-		await getAllPosts()
+		await getAllPosts().then((data) => setPosts(data))
 	}
 
 	useEffect(() => {
+		setIsLoading(true)
 		getAllPosts()
+			.then((data) => setPosts(data))
+			.then(() => setIsLoading(false))
 	}, [])
 
 	return (
 		<div className={styles.homepage}>
-			{posts.length !== 0 && posts !== undefined ? (
+			{isLoading === false ? (
 				posts.map((post) => {
 					return (
 						<PostCard
@@ -57,6 +86,7 @@ const Homepage = () => {
 							post={post}
 							likeOnePost={likeOnePost}
 							dislikeOnePost={dislikeOnePost}
+							deleteYourPost={deleteYourPost}
 						/>
 					)
 				})
