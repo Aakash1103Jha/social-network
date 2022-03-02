@@ -4,32 +4,64 @@ const data = require("../posts.json")
 const posts = [...data]
 
 const getAllPosts = async (req, res) => {
-	res.json(posts)
+	try {
+		const allPosts = await Post.find()
+		return res.status(200).json(allPosts)
+	} catch (err) {
+		console.error(`New Post Error: ${err}`)
+		res.status(500).json("Something went wrong..")
+	}
 }
+
 const getAllPostsForUser = async (req, res) => {}
+
 const addPost = async (req, res) => {
 	const newPost = new Post({
 		...req.body,
+		userId: req.user.payload.id,
 	})
-	res.send(newPost)
+	try {
+		await newPost.save()
+		return res.status(200).json("Post successful!")
+	} catch (err) {
+		console.error(`New Post Error: ${err}`)
+		res.status(500).json("Something went wrong..")
+	}
 }
-const editPostById = async (req, res) => {}
+const editPostById = async (req, res) => {
+	console.log(req.params.id)
+}
+
 const deletePostById = async (req, res) => {}
+
 const likePostById = async (req, res) => {
-	const _id = req.params.id
-	var onePost = posts.filter((item) => {
-		if (item._id.toString() === _id) return item
-	})
-	onePost[0].likes = onePost[0].likes + 1
-	res.json(posts)
+	try {
+		const _id = req.params.id
+		const onePost = await Post.findById({ _id })
+		await Post.findByIdAndUpdate(
+			{ _id },
+			{ $set: { likes: onePost.likes + 1 } },
+			{ upsert: false },
+		)
+		return res.status(204).json("Thanks!")
+	} catch (err) {
+		console.error(`Dislike Error: ${err}`)
+	}
 }
+
 const dislikePostById = async (req, res) => {
-	const _id = req.params.id
-	var onePost = posts.filter((item) => {
-		if (item._id.toString() === _id) return item
-	})
-	onePost[0].dislikes = onePost[0].dislikes + 1
-	res.json(posts)
+	try {
+		const _id = req.params.id
+		const onePost = await Post.findById({ _id })
+		await Post.findByIdAndUpdate(
+			{ _id },
+			{ $set: { dislikes: onePost.dislikes + 1 } },
+			{ upsert: false },
+		)
+		return res.status(204).json("Thanks!")
+	} catch (err) {
+		console.error(`Dislike Error: ${err}`)
+	}
 }
 
 module.exports = {

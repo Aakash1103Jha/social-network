@@ -32,7 +32,6 @@ const AuthContextProvider = (props) => {
 		})
 		if (res.status !== 200) return setAuthError(await res.json())
 		setIsLoggedIn(true)
-		console.log({ rememberMe, type: typeof rememberMe })
 		localStorage.setItem("remember", rememberMe)
 		cb()
 		return navigate("/")

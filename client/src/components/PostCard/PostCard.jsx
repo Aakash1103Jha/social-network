@@ -13,7 +13,7 @@ const PostCard = ({ post, likeOnePost, dislikeOnePost }) => {
 		<div className={styles.postcard}>
 			<div className={styles.post_header}>
 				<h1>{title}</h1>
-				<p>{userId}</p>
+				<p style={{ marginTop: "0.5rem" }}>{userId}</p>
 			</div>
 			<div className={styles.post_content}>
 				<p>{content}</p>

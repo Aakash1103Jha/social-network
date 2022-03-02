@@ -21,9 +21,12 @@ const Homepage = () => {
 	 * @param {string} id
 	 */
 	const likeOnePost = async (id) => {
-		const res = await fetch(`/posts/like/${id}`)
-		const data = await res.json()
-		setPosts(data)
+		await fetch(`/posts/like/${id}`, {
+			method: "GET",
+			body: null,
+			credentials: "include",
+		})
+		await getAllPosts()
 	}
 	/**
 	 * A function that accepts post id as parameter
@@ -31,9 +34,12 @@ const Homepage = () => {
 	 * @param {string} id
 	 */
 	const dislikeOnePost = async (id) => {
-		const res = await fetch(`/posts/dislike/${id}`)
-		const data = await res.json()
-		setPosts(data)
+		await fetch(`/posts/dislike/${id}`, {
+			method: "GET",
+			body: null,
+			credentials: "include",
+		})
+		await getAllPosts()
 	}
 
 	useEffect(() => {
@@ -42,8 +48,7 @@ const Homepage = () => {
 
 	return (
 		<div className={styles.homepage}>
-			{posts &&
-				posts.length !== 0 &&
+			{posts.length !== 0 && posts !== undefined ? (
 				posts.map((post) => {
 					return (
 						<PostCard
@@ -53,7 +58,10 @@ const Homepage = () => {
 							dislikeOnePost={dislikeOnePost}
 						/>
 					)
-				})}
+				})
+			) : (
+				<h1>Loading</h1>
+			)}
 		</div>
 	)
 }
