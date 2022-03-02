@@ -6,7 +6,11 @@
 	"scripts": {
 		"dev": "nodemon ./server/index.js --trace-warnings",
 		"test": "jest",
-		"build": "CI=false webpack --config ./server/webpack.config.js"
+		"build-server": "CI=false webpack --config ./server/webpack.config.js",
+		"build-client": "cd client && npm install && npm run build",
+		"build": "npm run build-server && npm run build-client",
+		"start-local": "node ./dist/main-*.js",
+		"start": "node /app/dist/main-*.js"
 	},
 	"repository": {
 		"type": "git",
