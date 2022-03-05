@@ -5,8 +5,9 @@ import Loader from "../Loader/Loader"
 
 import styles from "./Comment.module.css"
 
-const Comment = ({ userId, postId, comments, setIsCommentVisible, getAllCommentsForPost }) => {
+const Comment = ({ userId, postId, comments, isCommentEmpty, getAllCommentsForPost }) => {
 	const [comment, setComment] = useState("")
+	const whoAmI = localStorage.getItem("whoami") ?? undefined
 
 	const onCommentHandler = async (event, data) => {
 		event.preventDefault()
@@ -30,7 +31,7 @@ const Comment = ({ userId, postId, comments, setIsCommentVisible, getAllComments
 
 	return (
 		<div className={styles.comments}>
-			{comments ? (
+			{comments && comments.length !== 0 ? (
 				<div className={styles.comment_list}>
 					{comments.map((item) => {
 						return (
@@ -48,25 +49,33 @@ const Comment = ({ userId, postId, comments, setIsCommentVisible, getAllComments
 					})}
 				</div>
 			) : (
-				<Loader />
+				<>
+					{isCommentEmpty === false ? (
+						<Loader />
+					) : (
+						"No comments yet. If you're a member, login to post your comment"
+					)}
+				</>
 			)}
-			<form
-				key={"Comment_"}
-				className={styles.comment_form}
-				onSubmit={(event) => {
-					onCommentHandler(event, { comment, userId, postId })
-				}}>
-				<input
-					key="comment_field_"
-					className={`${styles.input} ${comment.length < 5 && styles.warn}`}
-					type="text"
-					id="content"
-					placeholder="Tip: Never say anything that you'd not want anyone to say to you"
-					value={comment}
-					onChange={(event) => setComment(event.target.value)}
-				/>
-				<Button label={"Comment"} />
-			</form>
+			{whoAmI !== undefined && whoAmI?.length !== 0 && (
+				<form
+					key={"Comment_"}
+					className={styles.comment_form}
+					onSubmit={(event) => {
+						onCommentHandler(event, { comment, userId, postId })
+					}}>
+					<input
+						key="comment_field_"
+						className={`${styles.input} ${comment.length < 5 && styles.warn}`}
+						type="text"
+						id="content"
+						placeholder="Tip: Never say anything that you'd not want anyone to say to you"
+						value={comment}
+						onChange={(event) => setComment(event.target.value)}
+					/>
+					<Button label={"Comment"} />
+				</form>
+			)}
 		</div>
 	)
 }

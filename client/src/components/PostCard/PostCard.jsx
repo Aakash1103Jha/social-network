@@ -13,7 +13,7 @@ const PostCard = (props) => {
 	const { title, content, likes, dislikes, _id, userId } = post
 
 	const [comments, setComments] = useState([])
-
+	const [isCommentEmpty, setIsCommentEmpty] = useState(false)
 	const [isCommentVisible, setIsCommentVisible] = useState(false)
 
 	const whoAmI = localStorage.getItem("whoami") ?? undefined
@@ -21,7 +21,9 @@ const PostCard = (props) => {
 	const getAllCommentsForPost = async (id) => {
 		const res = await fetch(`/comments/all?postId=${id}`)
 		if (res.status !== 200) return alert(await res.json())
-		return setComments(await res.json())
+		const data = await res.json()
+		data.length === 0 && setIsCommentEmpty(true)
+		return setComments(data)
 	}
 
 	return (
@@ -53,16 +55,18 @@ const PostCard = (props) => {
 						onClick={deleteYourPost.bind(null, _id.toString())}
 					/>
 				)}
-				{whoAmI !== undefined && whoAmI?.length !== 0 && (
-					<Button
-						type="secondary"
-						label={`${comments.length || ""} Comment`}
-						onClick={() => {
-							getAllCommentsForPost(_id.toString())
-							setIsCommentVisible(!isCommentVisible)
-						}}
-					/>
-				)}
+				<Button
+					type="secondary"
+					label={
+						whoAmI !== undefined && whoAmI?.length !== 0
+							? `${comments.length || ""} Comment`
+							: "View Comments"
+					}
+					onClick={() => {
+						getAllCommentsForPost(_id.toString())
+						setIsCommentVisible(!isCommentVisible)
+					}}
+				/>
 			</div>
 			{isCommentVisible === true && (
 				<Comment
@@ -71,6 +75,7 @@ const PostCard = (props) => {
 					comments={comments}
 					getAllCommentsForPost={getAllCommentsForPost}
 					setIsCommentVisible={setIsCommentVisible}
+					isCommentEmpty={isCommentEmpty}
 				/>
 			)}
 		</div>
