@@ -13,7 +13,7 @@ const Comment = new Schema(
 		content: {
 			type: String,
 			required: true,
-			minLength: [10, "Comment length should be at least 10 characters"],
+			minLength: 5,
 		},
 		likes: {
 			type: Number,

@@ -39,5 +39,5 @@
 		]
 	},
 	"devDependencies": {},
-	"proxy": "https://the-sn.herokuapp.com"
+	"proxy": "http://localhost:4000"
 }
