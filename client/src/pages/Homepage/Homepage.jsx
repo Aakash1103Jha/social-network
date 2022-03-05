@@ -7,11 +7,7 @@ import styles from "./Homepage.module.css"
 const Homepage = () => {
 	const [posts, setPosts] = useState([])
 	const [isLoading, setIsLoading] = useState(false)
-	/**
-	 * A function that gets list of all posts
-	 * from the server and returns an array of post object
-	 * @returns [Post] [{_id: String, title: String, content: String, likes: Number, dislikes: Number}]
-	 */
+
 	const getAllPosts = async () => {
 		const res = await fetch("/posts/all")
 		const data = await res.json()
@@ -20,12 +16,7 @@ const Homepage = () => {
 		}
 		return data
 	}
-	/**
-	 * A function that accepts post id as parameter
-	 * and sends a http request to delete post for that id
-	 * Also calls the getAllPost() function to refresh the page
-	 * @param {string} id
-	 */
+
 	const deleteYourPost = async (id) => {
 		setIsLoading(true)
 		const res = await fetch(`/posts/delete/${id}`, {
@@ -40,12 +31,7 @@ const Homepage = () => {
 		setIsLoading(false)
 		await getAllPosts().then((data) => setPosts(data))
 	}
-	/**
-	 * A function that accepts post id as parameter
-	 * and sends a http request to update count of likes
-	 * Also calls the getAllPost() function to refresh the page
-	 * @param {string} id
-	 */
+
 	const likeOnePost = async (id) => {
 		await fetch(`/posts/like/${id}`, {
 			method: "GET",
@@ -54,12 +40,7 @@ const Homepage = () => {
 		})
 		await getAllPosts().then((data) => setPosts(data))
 	}
-	/**
-	 * A function that accepts post id as parameter
-	 * and sends a http request to update count of dislikes
-	 * Also calls the getAllPost() function to refresh the page
-	 * @param {string} id
-	 */
+
 	const dislikeOnePost = async (id) => {
 		await fetch(`/posts/dislike/${id}`, {
 			method: "GET",

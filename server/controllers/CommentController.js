@@ -3,14 +3,32 @@ const Comment = require("../models/Comment")
 var comments = []
 
 const getCommentsForPost = async (req, res) => {
-	res.send(comments)
+	const { postId } = req.query
+	try {
+		const comments = await Comment.find({ postId }).sort({ createdAt: -1 })
+		return res.status(200).json(comments)
+	} catch (err) {
+		console.error(`Comment error: ${err}`)
+		return res.status(500).json("Could not add comment, something went wrong..")
+	}
 }
 const addComment = async (req, res) => {
+	const { postId } = req.params
+	const { content } = req.body
+	const userId = req.user.payload.id
+
 	const newComment = new Comment({
-		...req.body,
+		postId,
+		content,
+		userId,
 	})
-	comments.push(newComment)
-	res.send(comments)
+	try {
+		await newComment.save()
+		return res.status(200).json("Comment added successfully!")
+	} catch (err) {
+		console.error(`Comment error: ${err}`)
+		return res.status(500).json("Could not add comment, something went wrong..")
+	}
 }
 const editCommentById = async (req, res) => {}
 const deleteCommentById = async (req, res) => {}

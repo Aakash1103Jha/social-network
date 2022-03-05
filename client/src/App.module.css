@@ -1,8 +1,10 @@
 :root {
 	--red: #d1232a;
+	--red-warn: #ff5b602c;
 	--red-hover: #e0484d;
 	--red-click: #d1232a4d;
 	--gray: #444444;
+	--gray-light: #44444483;
 	--white: #ffffff;
 	--smoke: #f1f3f2;
 	--transition: 0.3s ease-in-out;
