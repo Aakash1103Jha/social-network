@@ -2,6 +2,7 @@ const User = require("../models/User")
 
 const { genSalt, hash, compare } = require("bcrypt")
 const { sign } = require("jsonwebtoken")
+const { clearCookie } = require("express/lib/response")
 
 const onSignin = async (req, res) => {
 	const { email, password } = req.body
@@ -51,4 +52,13 @@ const onResetPassword = async (req, res) => {
 	const user = await User.findById({ _id })
 }
 
-module.exports = { onSignin, onSignup, onResetPassword }
+const onSignout = async (req, res) => {
+	try {
+		res.clearCookie("token").status(200).json("Logout successful")
+	} catch (err) {
+		console.debug(`Signout error: ${err}`)
+		return res.status(500).json("Something went wrong")
+	}
+}
+
+module.exports = { onSignin, onSignup, onResetPassword, onSignout }
