@@ -71,7 +71,13 @@ const AuthContextProvider = (props) => {
 		return navigate("/signin")
 	}
 
-	const onSignout = () => {
+	const onSignout = async () => {
+		const res = await fetch("/users/signout", {
+			method: "GET",
+			credentials: "include",
+		})
+		console.log(res)
+		console.log(await res.json())
 		localStorage.removeItem("remember")
 		localStorage.removeItem("whoami")
 		return setIsLoggedIn(false)

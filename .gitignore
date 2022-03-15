@@ -5,3 +5,4 @@ dist
 build
 *.logs
 .env
+.vscode/launch.json
