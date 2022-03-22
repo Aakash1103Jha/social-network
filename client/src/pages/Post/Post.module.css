@@ -26,3 +26,9 @@
 .form textarea:focus {
 	outline: 1.5px solid var(--red-click);
 }
+.preview {
+	max-height: 15rem;
+	padding: 0.5rem;
+	border: 1px solid var(--smoke);
+	object-fit: contain;
+}

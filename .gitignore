@@ -6,3 +6,4 @@ build
 *.logs
 .env
 .vscode/launch.json
+**/temp

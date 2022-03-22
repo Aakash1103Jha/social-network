@@ -35,7 +35,6 @@ const PostCard = (props) => {
 			<div className={styles.post_content}>
 				<p>{content}</p>
 			</div>
-
 			<div className={styles.post_cta}>
 				<Button
 					label={`${likes} Likes`}

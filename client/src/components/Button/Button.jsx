@@ -11,6 +11,7 @@ const Button = (props) => {
 	const { label, type, disabled } = props
 	return (
 		<button
+			type=""
 			className={`${styles.button} ${type === "secondary" ? styles.secondary : null} ${
 				disabled === true ? styles.disabled : null
 			}`}

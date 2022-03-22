@@ -14,6 +14,7 @@ const Profile = () => {
 			<Header>
 				<h1>Profile</h1>
 			</Header>
+
 			<Button style={{ margin: "0rem" }} onClick={onSignout} label="Signout" />
 		</div>
 	)
